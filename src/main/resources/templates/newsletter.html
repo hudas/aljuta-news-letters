@@ -23,11 +23,31 @@
 
 </head>
     <body>
-        Aljuta - Administracinė platforma
+        <div th:replace="layout :: navigation"></div>
 
-        <a href="http://www.aljuta.com">Aljuta</a>
-        <a href="" th:href="@{/skrajutes}">Skrajutės siuntimas</a>
-        <a href="" th:href="@{/pasto-duomenys}">Pašto nustatymai</a>
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h4>Skrajutės siuntimas:</h4>
+                            <div>
+                                <label>Skraujutė:</label>
+                                <form method="POST" enctype="multipart/form-data" th:action="@{/newsletter/upload}">
+                                    <table>
+                                        Skrajutės įkėlimas:
+                                        <input type="file" name="newsletter-file"/>
+                                        <button type="submit">Įkelti</button>
+                                    </table>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- /container -->
 
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

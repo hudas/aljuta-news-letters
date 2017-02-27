@@ -1,19 +1,15 @@
 package org.hudas.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(schema = "mail", name = "email_configuration")
 public class EmailConfiguration {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "config_sequence")
+    @SequenceGenerator(name = "config_sequence", sequenceName = "mail.email_config_seq")
     private Long id;
-
-    @Column(name = "sftp_url", nullable = false)
-    private String sftpURL;
 
     @Column
     private String senderEmail;
@@ -21,8 +17,7 @@ public class EmailConfiguration {
     @Column
     private String senderPassword;
 
-    public EmailConfiguration(String sftpURL, String senderEmail, String senderPassword) {
-        this.sftpURL = sftpURL;
+    public EmailConfiguration(String senderEmail, String senderPassword) {
         this.senderEmail = senderEmail;
         this.senderPassword = senderPassword;
     }
@@ -31,8 +26,9 @@ public class EmailConfiguration {
 
     }
 
-    public String getSftpURL() {
-        return sftpURL;
+    public void update(String senderEmail, String senderPassword) {
+        this.senderEmail = senderEmail;
+        this.senderPassword = senderPassword;
     }
 
     public String getSenderEmail() {

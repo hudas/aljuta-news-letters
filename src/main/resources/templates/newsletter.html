@@ -59,7 +59,15 @@
                             <div class="row">
                                 <label>Gavėjai:</label>
 
+                                <form method="POST" th:action="@{/receivers}" th:object="${targetForm}">
+                                    <input type="text" th:field="${targetForm.subject}"/>
 
+                                    <div th:each="receiver,receiverStat : ${targetForm.letterReceivers}">
+                                        <input type="text" th:field="${targetForm.letterReceivers[__${receiverStat.index}__]}" />
+                                    </div>
+
+                                    <input type="text" th:field="${targetForm.additionalreceiver}"/>
+                                </form>
                             </div>
                         </div>
                     </div>

@@ -1,11 +1,13 @@
 package org.hudas.controllers.lettersend;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TargetForm {
 
     private String subject;
-    private List<String> letterReceivers;
+    private List<String> letterReceivers = new ArrayList<String>();
+    private String additionalReceiver;
 
     public TargetForm() {
     }

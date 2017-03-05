@@ -3,6 +3,7 @@ package org.hudas.controllers.lettersend;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -29,6 +30,23 @@ public class LetterController {
 
         model.addAttribute("letterForm", letterForm);
 
+        TargetForm target = (TargetForm) session.getAttribute("target-form");
+
+        if (target == null) {
+            target = new TargetForm();
+        }
+
+        model.addAttribute("targetForm", target);
+
         return "newsletter";
+    }
+
+
+
+    @RequestMapping("/receivers")
+    public String updateReceivers(MultipartFile file, HttpSession session) throws IOException {
+        session.setAttribute("newsletter-to-send", new UploadedNewsLetter(file.getOriginalFilename(), file.getBytes()));
+
+        return "redirect:/skrajutes";
     }
 }
